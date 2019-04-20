@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Refresh from './components/Refresh'
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      data: {},
+      cotizaciones: [],
       loaded: false
     }
   }
@@ -13,7 +14,7 @@ class App extends Component {
     this.callApi()
       .then(body => {
         console.log(body)
-        this.setState({ data: body.data, loaded: true })
+        this.setState({ cotizaciones: body.data, loaded: true })
       })
       .catch(err => console.log(err));
   }
@@ -22,30 +23,18 @@ class App extends Component {
     var response = await fetch('/cotizaciones/USD');
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
-    console.log(body)
     return body;
-  };
+  }
 
   render() {
-    if(this.state.loaded){
-      return (
-        <div className="App">
-          <p>Fecha : {this.state.data.result.updated}</p>
-          <p>Moneda : {this.state.data.result.source}</p>
-          <p>Valor : {this.state.data.result.value}</p>
-        </div>
-      );
-    }
-    else {
-      return(
-        <div className="App">
+    var cotizacionesList = this.state.cotizaciones.map(function(cot){
+                    return <li>
+                    {cot.result.source} - {cot.result.value}
+                    </li>;
+                  })
 
-        </div>
-      )
-
-    }
-
-  }
+    return  <ul>{ cotizacionesList }</ul>
+      }
 }
 
 export default App;
