@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Refresh from './components/Refresh'
 
 class App extends Component {
   constructor(props){
@@ -28,13 +27,20 @@ class App extends Component {
 
   render() {
     var cotizacionesList = this.state.cotizaciones.map(function(cot){
-                    return <li>
-                    {cot.result.source} - {cot.result.value}
-                    </li>;
+                    return (
+                      <li>
+                      {cot.result.source} - {cot.result.value}
+                      </li>
+                    );
                   })
 
-    return  <ul>{ cotizacionesList }</ul>
-      }
+    return  (
+      <div className = "App">
+        <ul>{ cotizacionesList }</ul>
+        <button onClick={()=> this.componentDidMount()}> Refresh </button>
+      </div>
+    )
+  }
 }
 
 export default App;
