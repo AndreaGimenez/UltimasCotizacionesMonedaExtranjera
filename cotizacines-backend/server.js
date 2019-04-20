@@ -41,7 +41,14 @@ function getCotizacion(moneda, callback){
     request(url, (error, response, body) => {
       if(!error && response.statusCode === 200){
         var data = JSON.parse(body);
-        callback(null, data);
+        var data_filtrada = {
+          "result": {
+            "source": data.result.source,
+            "target": data.result.target,
+            "value": data.result.value,
+          }
+        }
+        callback(null, data_filtrada);
       }else {
         callback({status: response.statusCode, message: response.statusMessage});
       }

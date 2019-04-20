@@ -27,15 +27,20 @@ class App extends Component {
 
   render() {
     var cotizacionesList = this.state.cotizaciones.map(function(cot){
-                    return (
-                      <li>
-                      {cot.result.source} - {cot.result.value}
-                      </li>
-                    );
-                  })
-
+      return (
+        <div className="card">
+          <div className="card-header">
+              <p className="font-weight-bold">{cot.result.source}</p>
+          </div>
+          <div className="card-header">
+              <p>{cot.result.value}</p>
+          </div>
+        </div>
+      );
+    })
     return  (
       <div className = "App">
+        <h1>COTIZACIONES</h1>
         <ul>{ cotizacionesList }</ul>
         <button onClick={()=> this.componentDidMount()}> Refresh </button>
       </div>
