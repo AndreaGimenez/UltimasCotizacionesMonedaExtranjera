@@ -10,7 +10,28 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var monedas = ['USD', 'EUR', 'BRL', 'GBP', 'BTC']
+var monedas = [
+  {
+    codigo : 'USD',
+    descripcion : 'Dólar de los Estados Unidos'
+  },
+  {
+    codigo : 'EUR',
+    descripcion : 'Euro'
+  },
+  {
+    codigo : 'BRL',
+    descripcion : 'Real brasileño'
+  },
+  {
+    codigo : 'GBP',
+    descripcion : 'Libra esterlina'
+  },
+  {
+    codigo : 'BTC',
+    descripcion : 'Bitcoin'
+  }
+]
 
 var url_primera_parte = "http://api.cambio.today/v1/quotes/";
 var url_segunda_parte = "/ARS/json?qty=1&key=";
@@ -36,14 +57,13 @@ function getCotizaciones(){
 }
 
 function getCotizacion(moneda, callback){
-
-    var url = url_primera_parte + moneda.toString() + url_segunda_parte + apikey;
+    var url = url_primera_parte + moneda.codigo + url_segunda_parte + apikey;
     request(url, (error, response, body) => {
       if(!error && response.statusCode === 200){
         var data = JSON.parse(body);
         var data_filtrada = {
           "result": {
-            "source": data.result.source,
+            "source": moneda.descripcion,
             "target": data.result.target,
             "value": data.result.value,
           }

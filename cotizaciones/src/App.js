@@ -25,24 +25,40 @@ class App extends Component {
     return body;
   }
 
+  refresh(){
+    this.setState({ cotizaciones: [], loaded: false});
+    this.componentDidMount();
+  }
+
   render() {
-    var cotizacionesList = this.state.cotizaciones.map(function(cot){
-      return (
-        <div className="card">
-          <div className="card-header">
-              <p className="font-weight-bold">{cot.result.source}</p>
+    var cotizacionesList = this.state.cotizaciones.map((cot) =>
+    {
+        return (
+          <div className="card" id="caja">
+            <div className="card-header">
+                <p className="font-weight-bold">{cot.result.source}</p>
+            </div>
+            <div className="card-body">
+                <p><span className="font-italic">ARS</span> {cot.result.value}</p>
+            </div>
           </div>
-          <div className="card-header">
-              <p>{cot.result.value}</p>
-          </div>
-        </div>
-      );
-    })
+        )
+      }
+    );
+
+    var loading = (<div id="posicion-spinner"><i className="fa fa-spinner fa-spin fa-10x"></i></div>);
+
     return  (
       <div className = "App">
-        <h1>COTIZACIONES</h1>
-        <ul>{ cotizacionesList }</ul>
-        <button onClick={()=> this.componentDidMount()}> Refresh </button>
+        <div className="container">
+          <h3 className="jumbotron jumbotron-fluid text-center prueba" id="titular">Cotización de Divisas Extranjeras</h3>
+          <div>
+              <button className="btn btn-primary btn-lg btn-block" id="boton" onClick={()=> this.refresh()}> Refresh </button>
+          </div>
+          <div>
+            { this.state.loaded ? cotizacionesList : loading}
+          </div>
+        </div>
       </div>
     )
   }

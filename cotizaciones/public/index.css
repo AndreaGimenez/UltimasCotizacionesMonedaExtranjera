@@ -1,0 +1,46 @@
+#titular{
+  margin-top: 20px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+#caja{
+   border-radius: 10px;
+   margin-bottom:15px;
+}
+
+#margenes{
+  margin-bottom: 50px;
+}
+
+#boton{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+#posicion-spinner{
+  margin-top: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media all and (min-width: 960px) {
+    body{
+        font-size: 18px;
+    }
+}
+
+@media all and (max-width: 959px) and (min-width: 600px) {
+    body{
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width: 599px) and (min-width: 320px) {
+    body{
+        font-size: 12px;
+    }
+
+}
