@@ -4,7 +4,7 @@ MANUAL DE INSTALACION
 
 git clone https://github.com/AndreaGimenez/UltimasCotizacionesMonedaExtranjera  
 cd UltimasCotizacionesMonedaExtranjera  
-npm install-deps  
+npm run install-deps  
 npm start  
 
 API  
