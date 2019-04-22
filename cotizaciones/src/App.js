@@ -31,10 +31,10 @@ class App extends Component {
   }
 
   render() {
-    var cotizacionesList = this.state.cotizaciones.map((cot) =>
+    var cotizacionesList = this.state.cotizaciones.map((cot, i) =>
     {
         return (
-          <div className="card" id="caja">
+          <div className="card" id="caja" key={i}>
             <div className="card-header">
                 <p className="font-weight-bold">{cot.result.source}</p>
             </div>
