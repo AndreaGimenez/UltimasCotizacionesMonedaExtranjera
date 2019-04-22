@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var monedas = [
+const monedas = [
   {
     codigo : 'USD',
     descripcion : 'Dólar de los Estados Unidos'

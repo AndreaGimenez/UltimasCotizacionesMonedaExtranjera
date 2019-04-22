@@ -39,7 +39,7 @@ class App extends Component {
                 <p className="font-weight-bold">{cot.result.source}</p>
             </div>
             <div className="card-body">
-                <p><span className="font-italic">ARS</span> {cot.result.value}</p>
+                <p><span className="font-italic">ARS</span> {cot.result.value.toFixed(5)}</p>
             </div>
           </div>
         )
